@@ -1,0 +1,46 @@
+server:
+  port: 8080
+  servlet:
+    session:
+      timeout: 3600
+
+spring:
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://61.75.21.224:5402/comeshr
+    username: hr_dev
+    password: comeshr12#dev
+    hikari:
+      schema: public
+      maximum-pool-size: 20
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: true
+    open-in-view: false
+    hibernate:
+      ddl-auto: none
+
+logging:
+  level:
+    root: info
+  file:
+    max-size: 100MB
+    max-history: 10
+    name: /var/log/application.log
+  logback:
+    rollingpolicy:
+      file-name-pattern: /var/log/education.%d{yyyy-MM-dd}-%i.log
+
+mybatis:
+  type-aliases-package: kr.co.comes.education.model
+  mapper-locations:
+  - classpath:mybatis/mapper/*.xml
+  configuration:
+      map-underscore-to-camel-case: true
+
+pagehelper:
+  helper-dialect: postgresql
+  auto-dialect: true
+  offset-as-page-num: true
+  support-methods-arguments: true
